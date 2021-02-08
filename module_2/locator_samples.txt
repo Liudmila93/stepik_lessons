@@ -1,5 +1,5 @@
 input#name
 //input[@name="userlastname"]
-input.third
+input.first-block-third
 //input[@data-type="PhoneNumber"]
-//input[@class="form-control second"]
+//input[contains(@class, "second-block-second")]

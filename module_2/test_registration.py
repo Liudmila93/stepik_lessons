@@ -1,13 +1,13 @@
 from selenium import webdriver
 from sys import argv
 
-#script_name, link = argv
-link1 = "http://suninjuly.github.io/registration1.html"
-link2 = "http://suninjuly.github.io/registration2.html"
+script_name, link = argv
+#link1 = "http://suninjuly.github.io/registration1.html" - не падает
+#link2 = "http://suninjuly.github.io/registration2.html" - падает
 
 try:
     browser = webdriver.Chrome()
-    browser.get(link2)
+    browser.get(link)
 
     input1 = browser.find_element_by_css_selector(".first_block .first")
     input1.send_keys("Ivan")
