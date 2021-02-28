@@ -17,25 +17,62 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope="function")
-def browser(request):
+def user_language(request):
     user_language = request.config.getoption("language")
-    options = Options()
-    options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    browser = None
-    if user_language == "ru":
-        print("\nLanguage is Russian")
-        browser = webdriver.Chrome(options=options)
-    elif user_language == "en-GB":
-        print("\nLanguage is English")
-        browser = webdriver.Chrome(options=options)
-    elif user_language == "es":
-        print("\nLanguage is es")
-        browser = webdriver.Chrome(options=options)
-    elif user_language == "fr":
-        print("\nfr")
-        browser = webdriver.Chrome(options=options)
+    if user_language in ["ru", "en-GB", "fr", "es"]:
+        print("User language is", user_language)
+        return user_language
     else:
         raise pytest.UsageError("--language should be ru or en-GB or es or fr")
+
+@pytest.fixture(scope="function")
+def browser(user_language):
+    options = Options()
+    options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+    browser = webdriver.Chrome(options=options)
     yield browser
     print("\nquit browser..")
     browser.quit()
+
+
+# Версия2
+# @pytest.fixture(scope="function")
+# def browser(request):
+#     user_language = request.config.getoption("language")
+#     options = Options()
+#     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+#     if user_language in ["ru", "en-GB", "fr", "es"]:
+#         print("User language is", user_language)
+#         browser = webdriver.Chrome(options=options)
+#         browser.user_language = user_language
+#     else:
+#         raise pytest.UsageError("--language should be ru or en-GB or es or fr")
+#     yield browser
+#     print("\nquit browser..")
+#     browser.quit()
+
+#
+# Версия 1
+# @pytest.fixture(scope="function")
+# def browser(request):
+#     user_language = request.config.getoption("language")
+#     options = Options()
+#     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+#     browser = None
+#     if user_language == "ru":
+#         print("\nLanguage is Russian")
+#         browser = webdriver.Chrome(options=options)
+#     elif user_language == "en-GB":
+#         print("\nLanguage is English")
+#         browser = webdriver.Chrome(options=options)
+#     elif user_language == "es":
+#         print("\nLanguage is es")
+#         browser = webdriver.Chrome(options=options)
+#     elif user_language == "fr":
+#         print("\nfr")
+#         browser = webdriver.Chrome(options=options)
+#     else:
+#         raise pytest.UsageError("--language should be ru or en-GB or es or fr")
+#     yield browser
+#     print("\nquit browser..")
+#     browser.quit()
