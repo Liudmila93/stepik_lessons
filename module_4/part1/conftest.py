@@ -4,7 +4,6 @@ conftest.py содержит обработчик опции language
 conftest.py содержит фикстуру browser
 В фикстуре browser создается и возвращается объект браузера с языковыми настройками, соответствующими переданной опции language
 В фикстуре browser реализовано закрытие браузера после прохождения теста"""
-#pytest -s -v --language=es module_4\part1\test_items.py
 
 import pytest
 from selenium import webdriver
@@ -34,6 +33,10 @@ def browser(user_language):
     print("\nquit browser..")
     browser.quit()
 
+
+
+
+#pytest -s -v --language=es module_4\part1\test_items.py
 
 # Версия2
 # @pytest.fixture(scope="function")
