@@ -6,3 +6,4 @@ class TestMainPage:
         login_link = browser.find_element_by_css_selector("#login_link")
         login_link.click()
 
+#pytest -v --tb=line --language=en-GB module_5\test_main_page.py
