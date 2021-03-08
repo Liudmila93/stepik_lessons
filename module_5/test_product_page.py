@@ -1,5 +1,7 @@
 from .pages.product_page import ProductPage
 import pytest
+from .pages.basket_page import BasketPage
+
 
 
 class TestProductPage:
@@ -51,6 +53,13 @@ class TestProductPage:
         page.open()
         page.should_be_login_link()
 
-
+    def test_guest_cant_see_product_in_basket_opened_from_product_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.go_to_basket()
+        basket_page = BasketPage(browser, browser.current_url)
+        basket_page.should_be_empty_message()  # проверяем сообщение что корзина пуста
+        basket_page.should_not_be_items_in_basket()  # проверяем что нет товаров в корзине
 
 # pytest -v --tb=line --language=en-GB module_5\test_main_page.py
