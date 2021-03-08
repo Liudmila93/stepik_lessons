@@ -14,30 +14,37 @@ class TestProductPage:
         page.add_item_to_basket()  # выполняем метод страницы - нажимаем на кнопку добавления в корзину
         page.solve_quiz_and_get_code()
         page.should_show_info_in_the_cart()  # проверяем страницу логина
-    #
-    # @pytest.mark.xfail(reason="user will see success message in this test")
-    # def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
-    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    #     page = ProductPage(browser, link)
-    #     page.open()  # открываем страницу
-    #     page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
-    #     page.solve_quiz_and_get_code()
-    #     page.should_not_be_success_message()  # проверяем страницу логина
-    #
-    # def test_guest_cant_see_success_message(self, browser):
-    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    #     page = ProductPage(browser, link)
-    #     page.open()  # открываем страницу
-    #     page.should_not_be_success_message()  # проверяем страницу логина
-    #
-    # @pytest.mark.xfail(reason="success message cant dissapear")
-    # def test_message_disappeared_after_adding_product_to_basket(self, browser):
-    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    #     page = ProductPage(browser, link)
-    #     page.open()  # открываем страницу
-    #     page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
-    #     page.solve_quiz_and_get_code()
-    #     page.should_disappear_success_message()  # проверяем страницу логина
+
+    @pytest.mark.xfail(reason="user will see success message in this test")
+    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()  # открываем страницу
+        page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
+        page.solve_quiz_and_get_code()
+        page.should_not_be_success_message()  # проверяем страницу логина
+
+    def test_guest_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()  # открываем страницу
+        page.should_not_be_success_message()  # проверяем страницу логина
+
+    @pytest.mark.xfail(reason="success message cant dissapear")
+    def test_message_disappeared_after_adding_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()  # открываем страницу
+        page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
+        page.solve_quiz_and_get_code()
+        page.should_disappear_success_message()  # проверяем страницу логина
+
+    def test_guest_should_see_login_link_on_product_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_login_link()
+
 
 
 # pytest -v --tb=line --language=en-GB module_5\test_main_page.py
