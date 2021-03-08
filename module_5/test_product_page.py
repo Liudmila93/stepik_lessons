@@ -45,6 +45,12 @@ class TestProductPage:
         page.open()
         page.should_be_login_link()
 
+    def test_guest_can_go_to_login_page_from_product_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_login_link()
+
 
 
 # pytest -v --tb=line --language=en-GB module_5\test_main_page.py
