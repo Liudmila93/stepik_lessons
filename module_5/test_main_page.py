@@ -19,7 +19,7 @@ class TestMainPage:
         page.go_to_basket()  # переходим на страницу корзины
         basket_page = BasketPage(browser, browser.current_url)
         basket_page.should_be_empty_message()  # проверяем сообщение что корзина пуста
-
+        basket_page.should_not_be_items_in_basket()  # проверяем что нет товаров в корзине
 
 #pytest -v --tb=line --language=en-GB module_5\test_main_page.py
 
