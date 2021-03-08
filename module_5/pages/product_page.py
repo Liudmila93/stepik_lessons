@@ -15,7 +15,6 @@ class ProductPage(BasePage):
         cart_text = self.browser.find_element(*ProductPageLocators.CART_MESSAGE_WITH_BOOK_NAME).text
         book_name = self.browser.find_element(*ProductPageLocators.BOOK_NAME).text
         whole_text = book_name + " has been added to your basket."
-        print(whole_text)
         assert whole_text == cart_text, "Message with book name is wrong"
 
     def should_be_message_about_cost(self):
