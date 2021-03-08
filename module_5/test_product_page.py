@@ -9,10 +9,35 @@ class TestProductPage:
                                "offer9"])
     def test_guest_can_add_product_to_basket(self, browser, promo_offer):
         link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo={promo_offer}"
-        page = ProductPage(browser, link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+        page = ProductPage(browser, link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url
         page.open()  # открываем страницу
-        page.go_to_basket_page()  # выполняем метод страницы - нажимаем на кнопку добавления в корзину
+        page.add_item_to_basket()  # выполняем метод страницы - нажимаем на кнопку добавления в корзину
         page.solve_quiz_and_get_code()
         page.should_show_info_in_the_cart()  # проверяем страницу логина
+    #
+    # @pytest.mark.xfail(reason="user will see success message in this test")
+    # def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
+    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    #     page = ProductPage(browser, link)
+    #     page.open()  # открываем страницу
+    #     page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
+    #     page.solve_quiz_and_get_code()
+    #     page.should_not_be_success_message()  # проверяем страницу логина
+    #
+    # def test_guest_cant_see_success_message(self, browser):
+    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    #     page = ProductPage(browser, link)
+    #     page.open()  # открываем страницу
+    #     page.should_not_be_success_message()  # проверяем страницу логина
+    #
+    # @pytest.mark.xfail(reason="success message cant dissapear")
+    # def test_message_disappeared_after_adding_product_to_basket(self, browser):
+    #     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    #     page = ProductPage(browser, link)
+    #     page.open()  # открываем страницу
+    #     page.add_item_to_basket()  # нажимаем на кнопку добавления в корзину
+    #     page.solve_quiz_and_get_code()
+    #     page.should_disappear_success_message()  # проверяем страницу логина
+
 
 # pytest -v --tb=line --language=en-GB module_5\test_main_page.py
